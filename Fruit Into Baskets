@@ -1,0 +1,29 @@
+class Solution {
+  public:
+    int totalFruits(vector<int> &arr) {
+        int k=2;
+        int l=0,r=0,maxLen=0;
+        map<int,int> m;
+        while(r<arr.size())
+        {
+            m[arr[r]]++;
+            if(m.size()>k)
+            {
+                m[arr[l]]--;
+                if(m[arr[l]]==0)
+                {
+                    m.erase(arr[l]);
+                }
+                l++;
+            }
+            if(m.size()<=k)
+            {
+               int  len = r-l+1;
+                maxLen = max(len,maxLen);
+            }
+            r++;
+            
+        }
+        return maxLen;
+    }
+};
